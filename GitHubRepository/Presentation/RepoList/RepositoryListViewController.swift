@@ -13,20 +13,10 @@ class RepositoryListViewController: UITableViewController {
     private let organization = "Apple"
     private let repositories = BehaviorSubject<[Repository]>(value: [])
     private let disposBag = DisposeBag()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = organization + " Repositories"
-        
-        self.refreshControl = UIRefreshControl()
-        let refreshControl = self.refreshControl
-        refreshControl?.backgroundColor = .white
-        refreshControl?.tintColor = .darkGray
-        refreshControl?.attributedTitle = NSAttributedString(string: "당겨서 새로고침")
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
-        tableView.register(RepositoryListCell.self, forCellReuseIdentifier: "RepositoryListCell")
-        tableView.rowHeight = 140
+        attribute()
         refresh()
     }
     
@@ -81,6 +71,21 @@ class RepositoryListViewController: UITableViewController {
                 }
             })
             .disposed(by: disposBag)
+    }
+    
+    private func attribute() {
+        title = organization + " Repositories"
+        
+        self.refreshControl = UIRefreshControl()
+        let refreshControl = self.refreshControl
+        refreshControl?.backgroundColor = .white
+        refreshControl?.tintColor = .darkGray
+        refreshControl?.attributedTitle = NSAttributedString(string: "당겨서 새로고침")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        tableView.register(RepositoryListCell.self, forCellReuseIdentifier: "RepositoryListCell")
+        tableView.rowHeight = 140
+        
     }
 }
 
