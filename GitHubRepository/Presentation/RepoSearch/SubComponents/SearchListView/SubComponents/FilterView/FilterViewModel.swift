@@ -9,5 +9,5 @@ import RxSwift
 import RxCocoa
 
 struct FilterViewModel {
-    
+    let sortButtonTapped = PublishRelay<Void>()
 }

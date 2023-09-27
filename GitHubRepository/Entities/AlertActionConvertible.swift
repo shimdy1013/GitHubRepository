@@ -5,4 +5,9 @@
 //  Created by 심두용 on 2023/06/09.
 //
 
-import Foundation
+import UIKit
+
+protocol AlertActionConvertible {
+    var title: String { get }
+    var style: UIAlertAction.Style { get }
+}

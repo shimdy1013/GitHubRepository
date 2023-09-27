@@ -84,7 +84,7 @@ class RepositoryListViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         tableView.register(RepositoryListCell.self, forCellReuseIdentifier: "RepositoryListCell")
-        tableView.rowHeight = 140
+        tableView.rowHeight = 100
         
     }
 }

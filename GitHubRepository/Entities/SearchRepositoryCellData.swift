@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchRepositoryCell {
+struct SearchRepositoryCellData {
     let avatarURL: URL?
     let fullName: String?
     let description: String?

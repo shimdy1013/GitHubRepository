@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchListCellData: Decodable {
+struct SearchRepository: Decodable {
     let items: [Item]
 }
 
@@ -34,10 +34,23 @@ struct Item: Decodable {
         self.id = try values.decode(Int.self, forKey: .id)
         self.owner = try values.decode(Owner.self, forKey: .owner)
         self.fullName = try values.decode(String.self, forKey: .fullName)
-        self.description = try values.decode(String.self, forKey: .description)
-        self.language = try values.decode(String.self, forKey: .language)
+        //self.description = try values.decode(String.self, forKey: .description)
+        //self.language = try values.decode(String.self, forKey: .language)
         self.stargazersCount = try values.decode(Int.self, forKey: .stargazersCount)
         self.updatedAt = Date.parse(values, key: .updatedAt)
+        
+        // JSON description, language 값이 Null일 경우 에러나서 변경
+        if let description =  try values.decodeIfPresent(String.self, forKey: .description) {
+            self.description = description
+        } else {
+            self.description = ""
+        }
+        
+        if let language =  try values.decodeIfPresent(String.self, forKey: .language) {
+            self.language = language
+        } else {
+            self.language = ""
+        }
     }
 }
 

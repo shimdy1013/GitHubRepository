@@ -11,16 +11,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let rootViewController = RepositoryListViewController()
+        //let rootViewController = RepositoryListViewController()
+        let rootViewController = TabBarViewController()
         let rootNavigationController = UINavigationController(rootViewController: rootViewController)
         
         self.window?.rootViewController = rootNavigationController
         self.window?.makeKeyAndVisible()
+        
+        // tabbar 투명해지는 버그 해결
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            
+            // TAB BAR BACKGROUND COLOR HERE. (same as above)
+            appearance.backgroundColor = UIColor.white
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

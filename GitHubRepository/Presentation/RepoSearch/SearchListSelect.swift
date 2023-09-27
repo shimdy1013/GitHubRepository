@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import UIKit
+
+class SearchListSelect: UIViewController, UITableViewDelegate {
+    let listView = SearchListView()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected ===============")
+    }
+}
+
